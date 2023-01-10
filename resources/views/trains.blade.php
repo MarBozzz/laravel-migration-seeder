@@ -1,25 +1,39 @@
 @extends('layout.main')
 
 @section('content')
-    <h1>
-        <div class="container">
-            <h1 class="text-center pb-5">Orari Treni</h1>
-
-            <div class="row text-center">
-                 @foreach ($trains as $train)
-                     <div class="col-3">
-                        <a href="#" class="card mb-5 pb-5">
-                            <div class="card-body">
-                            <h3 class="card-title py-5">Treno: {{ $train->company_name }}</h3>
-                            <p class="card-text">Numero: {{ $train->train_code }}</p>
-                            <p class="card-text">Proveniente da: {{ $train->departure_station }}</p>
-                            <p class="card-text">Diretto a: {{ $train->arrival_station }}</p>
-                            </div>
-                        </a>
-                     </div>
-
-                 @endforeach
-            </div>
+    <div class="container">
+        <h1 class="text-center py-5">Orari Treni</h1>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">Treno</th>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Provenienza</th>
+                    <th scope="col">Destinazione</th>
+                    <th scope="col">Orario di Partenza</th>
+                    <th scope="col">Orario di Arrivo</th>
+                    <th scope="col">Numero Carrozze</th>
+                    <th scope="col">In Orario</th>
+                    <th scope="col">Soppresso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($trains as $train)
+                    <tr>
+                    <td>{{ $train->company_name }}</td>
+                    <td>{{ $train->train_code }}</td>
+                    <td>{{ $train->departure_station }}</td>
+                    <td>{{ $train->arrival_station }}</td>
+                    <td>{{ $train->departure_time }}</td>
+                    <td>{{ $train->arrival_time }}</td>
+                    <td>{{ $train->couches_number }}</td>
+                    <td>{{ $train->is_punctual === 0 ? 'No' : 'Si'}}</td>
+                    <td>{{ $train->is_suppressed === 0 ? 'No' : 'Si'}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
-    </h1>
+    </div>
 @endsection
