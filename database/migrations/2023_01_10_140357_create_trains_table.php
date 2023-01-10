@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('company_name',25);
             $table->string('departure_station',30);
             $table->string('arrival_station',30);
-            $table->string('departure_time',5);
-            $table->string('arrival_time',5);
+            $table->string('departure_time',8);
+            $table->string('arrival_time',8);
             $table->string('train_code',7);
             $table->tinyInteger('couches_number')->nullable();
             $table->tinyInteger('is_punctual')->default(1);
-            $table->tinyInteger('is_suppressed');
+            $table->tinyInteger('is_suppressed')->default(0);
             $table->timestamps();
         });
     }
